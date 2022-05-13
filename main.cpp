@@ -85,14 +85,58 @@ int main() {
 }
 
 unsigned long long int Fibonacci(unsigned int n){
-	return 0;
+    if (n == 1) {
+        return 1;
+    }
+    else if (n == 0) {
+        return 0;
+    }
+    else {
+        return Fibonacci(n - 2) + Fibonacci(n - 1);
+    }
 }
+
 void PrintReverseString(const string& str, ostream& output){
+    if (str.size() == 1) {
+        output << str.at(0);
+    }
+    else if (str.size() == 0) {
+        output << "";
+    }
+    else {
+        PrintReverseString(str.substr(1), output);
+        output << str.at(0);
+    }
 }
+
 // You may change the parameters of these functions
 size_t MinimumPosition(const int array[], size_t size){
-	return 0;
-}
-void SelectionSort(int array[], size_t size){
+    if (size <= 1) {
+        return 0;
+    }
 
+    size = size - 1;
+    size_t minIndex = MinimumPosition(array, size);
+
+    if (array[size] < array[minIndex]) {
+        return size;
+    }
+    else {
+        return minIndex;
+    }
+
+}
+
+void SelectionSort(int array[], size_t size){
+    for (size_t i = 0; i < size; i++) {
+        size_t min = i;
+        for (size_t j = i + 1; j < size; j++) {
+            if (array[j] < array[min]) {
+                min = j;
+            }
+        }
+        int tempStore = array[i];
+        array[i] = array[min];
+        array[min] = tempStore;
+    }
 }
